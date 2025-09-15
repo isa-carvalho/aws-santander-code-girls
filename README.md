@@ -1,5 +1,6 @@
 <div style="display: flex; align-items: center; justify-content: center; gap: 5px;">
-  <img src="icons/santander.webp" alt="Santander Code Girls" style="width:50px; height:auto;">
+
+  <img src="icons/santander.webp" alt="Santander Code Girls" style="width:100px; height:auto;">
   <span>AWS Santander Code Girls 2025</span>
 </div>
 
