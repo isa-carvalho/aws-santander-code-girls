@@ -56,7 +56,7 @@
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="A6aOL2PHQG94T3R8-1sS-9" value="Alterações no blog" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=20;fontStyle=1" vertex="1" connectable="0" parent="1yenyyKcMSJqtobYhBz9-19">
+        <mxCell id="A6aOL2PHQG94T3R8-1sS-9" value="Trigger de alterações no blog" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=20;fontStyle=1" vertex="1" connectable="0" parent="1yenyyKcMSJqtobYhBz9-19">
           <mxGeometry x="0.0536" y="2" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
