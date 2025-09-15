@@ -57,3 +57,11 @@ Serviço de armazenamento de objetos em nuvem oferecido pela AWS. È ideal para 
 O usuário acessa o blog, que está hospedado em uma instância EC2 (por exemplo, usando Nginx ou Apache). Essa instância utiliza um EBS para armazenar os dados dinâmicos de forma persistente e um S3 para gerenciar os arquivos estáticos, como imagens e scripts.
 
 Sempre que há alterações no conteúdo do blog — como novas postagens ou adição de imagens — o Lambda é acionado a partir de eventos no S3, permitindo executar ações automáticas, como atualização de cache ou notificações. Além disso, outra trigger no Lambda monitora o EBS para automatizar backups dos dados dinâmicos, garantindo que nada seja perdido.
+
+
+### Melhorias futuras
+Atualmente, o blog está provisionado em uma instância EC2 que processa conteúdo dinâmico e entrega arquivos estáticos. Uma melhoria seria migrar os conteúdos estáticos para o CloudFront (CDN da AWS), conectado ao S3. 
+
+- Isso permite servir imagens, CSS e JS diretamente da CDN, reduzindo a carga no servidor EC2;
+- Melhorar a performance e a escalabilidade;
+- Reduzir custos, já que não é necessário manter EC2 ativa para entregar arquivos estáticos.
