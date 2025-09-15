@@ -50,7 +50,7 @@ Serviço de armazenamento de objetos em nuvem oferecido pela AWS. È ideal para 
 
 ## Diagrama
 
-[Diagrama](link)
+# ![Santander Code Girls](fluxo_blog.drawio.png)
 
 ### Fluxo
 
