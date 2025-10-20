@@ -1,0 +1,66 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Template de Exemplo para provisionar uma instância EC2 simples.
+
+# ====================
+# 1. PARÂMETROS (Entradas Personalizáveis)
+# ====================
+Parameters:
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: Nome do par de chaves EC2 existente para acesso SSH.
+  
+  InstanceType:
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - t2.small
+    Description: Tipo de instância EC2 a ser lançada.
+  
+  LatestAmiId:
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
+    Description: ID da AMI do Amazon Linux 2 (pegando o mais recente).
+
+# ====================
+# 2. RECURSOS (O que será criado)
+# ====================
+Resources:
+  # Recurso 1: Grupo de Segurança (Permite tráfego SSH)
+  EC2SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Habilita acesso SSH via porta 22
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0 # Acesso de qualquer IP (Para fins de exemplo. Em Prod, use seu IP!)
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-SSH-SG'
+  
+  # Recurso 2: Instância EC2
+  WebServerInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref LatestAmiId           # Usamos o ID da AMI obtido do Parâmetro
+      InstanceType: !Ref InstanceType     # Usamos o tipo de instância obtido do Parâmetro
+      KeyName: !Ref KeyName               # Usamos o nome da chave KeyPair obtido do Parâmetro
+      SecurityGroupIds:
+        - !Ref EC2SecurityGroup          # Referenciamos o Security Group criado acima
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-WebServer'
+
+# ====================
+# 3. SAÍDAS (Valores importantes para uso posterior)
+# ====================
+Outputs:
+  InstanceId:
+    Description: O ID da Instância EC2 criada
+    Value: !Ref WebServerInstance
+  
+  PublicIP:
+    Description: O endereço IP Público da Instância
+    Value: !GetAtt WebServerInstance.PublicIp
