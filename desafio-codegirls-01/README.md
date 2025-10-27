@@ -65,3 +65,4 @@ Atualmente, o blog está provisionado em uma instância EC2 que processa conteú
 - Isso permite servir imagens, CSS e JS diretamente da CDN, reduzindo a carga no servidor EC2;
 - Melhorar a performance e a escalabilidade;
 - Reduzir custos, já que não é necessário manter EC2 ativa para entregar arquivos estáticos.
+
